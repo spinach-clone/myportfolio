@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { track } from "@vercel/analytics";
 import { ArrowLeftIcon, ScanIcon } from "./icons";
 
 export function AtsToggle() {
@@ -11,6 +12,9 @@ export function AtsToggle() {
   return (
     <Link
       href={isAtsView ? "/" : "/ats"}
+      onClick={() =>
+        track(isAtsView ? "ATS View Exit" : "ATS View Open", { from: pathname })
+      }
       aria-label={isAtsView ? "Exit ATS-friendly view" : "View ATS-friendly resume"}
       title={isAtsView ? "Exit ATS-friendly view" : "View ATS-friendly resume"}
       className="fixed right-6 bottom-6 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white shadow-[0_10px_24px_-6px_rgba(108,99,255,0.55)] transition-transform duration-200 hover:scale-105 active:scale-95"

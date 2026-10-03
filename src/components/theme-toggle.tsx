@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { track } from "@vercel/analytics";
 import { MoonIcon, SunIcon } from "./icons";
 
 export function ThemeToggle() {
@@ -14,6 +15,7 @@ export function ThemeToggle() {
   function toggle() {
     const next = !isDark;
     setIsDark(next);
+    track("Theme Toggle", { theme: next ? "dark" : "light" });
     document.documentElement.classList.toggle("dark", next);
     try {
       localStorage.setItem("theme", next ? "dark" : "light");

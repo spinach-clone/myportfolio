@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { Header } from "@/components/header";
 import { AtsToggle } from "@/components/ats-toggle";
+import { ClickTracker } from "@/components/click-tracker";
 import "./globals.css";
 
 const themeInitScript = `
@@ -50,6 +52,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           &copy; 2026 Christo Rey Espina.
         </p>
         <AtsToggle />
+        <ClickTracker />
+        <Analytics />
       </body>
     </html>
   );

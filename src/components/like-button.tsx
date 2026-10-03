@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type MouseEvent } from "react";
 import { motion } from "framer-motion";
+import { track } from "@vercel/analytics";
 import { HeartIcon } from "./icons";
 
 const PARTICLE_COUNT = 8;
@@ -48,6 +49,7 @@ export function LikeButton({
     } catch {
       // localStorage unavailable — like still reflects in UI for this visit
     }
+    track(next ? "Project Like" : "Project Unlike", { slug });
     if (next) {
       setBurst((count) => count + 1);
     }

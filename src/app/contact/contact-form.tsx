@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { track } from "@vercel/analytics";
 import { profile } from "@/lib/profile";
 
 export function ContactForm() {
@@ -24,6 +25,7 @@ export function ContactForm() {
       .filter((line) => line !== null)
       .join("\n");
 
+    track("Contact Form Submit");
     window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setStatus("sent");
   }
